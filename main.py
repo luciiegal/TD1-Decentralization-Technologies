@@ -32,17 +32,21 @@ ascii_art_dict = {
 # Then we can define a function that store the art for a text entered by the user
 
 def text_to_art(text):
-    art_text=[]
+    art_text=[' ' for i in range(5)]
     for letter in text:
         if letter in ascii_art_dict.keys():
             for index, line in enumerate(ascii_art_dict[letter]):
-                art_text.append(line)
+                art_text[index]+=(line)+' '
     return art_text
 
 # We create a function that will display the art in the console
 def from_art_to_console(art_text):
-    pass
-text='TEST'
-art=[' ' for _ in range(len(text))]*5
+    # We know that each letter is of length 5. So we will take in account to display the figure
+    for i in range(5):
+        print(art_text[i])
 
-print(text_to_art(text))
+user=input("Give a string to transform in ASCII art: ")
+text=user.upper()
+print("\n\n")
+from_art_to_console(text_to_art(text))
+print("\n\n")
