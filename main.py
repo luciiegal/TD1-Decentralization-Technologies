@@ -45,8 +45,40 @@ def from_art_to_console(art_text):
     for i in range(5):
         print(art_text[i])
 
-user=input("Give a string to transform in ASCII art: ")
-text=user.upper()
-print("\n\n")
-from_art_to_console(text_to_art(text))
-print("\n\n")
+
+#second option of ASCII art, with the Pyfiglet python library
+import pyfiglet
+def list_fonts():
+    return pyfiglet.FigletFont.getFonts()
+
+def text_to_art_pyfiglet(text, font="standard"):
+    pyfiglet_obj = pyfiglet.Figlet(font=font)
+    return pyfiglet_obj.renderText(text)
+
+def from_art_to_console_pyfiglet(art_text):
+    print(art_text)
+
+
+print("Welcome to ASCII art!")
+choice=input("Do you want the version dictionary (1) or PyFiglet (2)?")
+if (choice=="2"): 
+    print("Choose the font you want to use, in this list:")
+    fonts = list_fonts()
+    for font in fonts:
+        print(font)
+    font_user=input("Your choice:")
+
+    user=input("Give a string to transform in ASCII art: ")
+    text=user.upper()
+    print("\n\n")
+    ascii_art = text_to_art_pyfiglet(text, font=font_user)
+    from_art_to_console_pyfiglet(ascii_art)
+    print("\n\n")
+elif (choice=="1"):
+    user=input("Give a string to transform in ASCII art: ")
+    text=user.upper()
+    print("\n\n")
+    from_art_to_console(text_to_art(text))
+    print("\n\n")
+else:
+    print("Select a valid option.")
